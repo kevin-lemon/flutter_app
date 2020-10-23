@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   HomeModel homeModel;
-  List<DatasBean> datas;
+  List<DatasBean> _datas;
   int pageNum = 0;
 
   @override
@@ -21,10 +21,14 @@ class _HomePageState extends State<HomePage> {
     print("wxk: init");
     homeModel = HomeModel(() {
       setState(() {
+        if(homeModel.dataBean.datas == null || homeModel.dataBean.datas.length == 0){
+          _refreshController.loadNoData();
+          return;
+        }
         if(pageNum == 0){
-          datas = homeModel?.dataBean?.datas;
+          _datas = homeModel?.dataBean?.datas;
         }else{
-          datas.addAll(homeModel?.dataBean?.datas);
+          _datas.addAll(homeModel?.dataBean?.datas);
         }
       });
     });
@@ -54,10 +58,6 @@ class _HomePageState extends State<HomePage> {
     await Future.delayed(Duration(milliseconds: 1000));
     pageNum ++ ;
     homeModel.getHomeArticleList(pageNum);
-    if(mounted)
-      setState(() {
-
-      });
     _refreshController.loadComplete();
   }
 
@@ -88,15 +88,16 @@ class _HomePageState extends State<HomePage> {
       onRefresh: _onRefresh,
       onLoading: _onLoading,
       child: ListView.builder(
-        itemCount: datas?.length ?? 0,
+        itemCount: _datas?.length ?? 0,
         itemBuilder: (context, index) {
-          if (index.isOdd) {
-            return Divider();
-          }
-          return ListTile(
-            title: Text(datas[index].author),
-            leading: Text(datas[index].niceDate),
-            trailing: Text(datas[index].chapterName),
+          return Column(
+            children: [
+              Container(
+                  child: Text(_datas[index].chapterName)
+              ),
+              Container(child: Text(_datas[index].niceShareDate)),
+              Container(child:  Text(_datas[index].niceDate))
+            ],
           );
         },
         itemExtent: 100.0,
