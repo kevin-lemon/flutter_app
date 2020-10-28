@@ -5,7 +5,7 @@ import 'file:///D:/FlutterWorkspace/flutter_app/lib/UI/home/home_page.dart';
 import 'file:///D:/FlutterWorkspace/flutter_app/lib/ui/main_drawer/main_drawer.dart';
 import 'file:///D:/FlutterWorkspace/flutter_app/lib/UI/project/project_page.dart';
 import 'file:///D:/FlutterWorkspace/flutter_app/lib/UI/system/system_page.dart';
-import 'package:flutterapp/values/app_colors.dart';
+import 'file:///D:/FlutterWorkspace/flutter_app/lib/resources/values/app_colors.dart';
 
 import 'UI/navigation/navigation_page.dart';
 

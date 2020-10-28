@@ -19,9 +19,11 @@ environment:
 dependencies:
 
   dio: ^3.0.9
-  provider: ^2.0.1+1
+  provider: ^4.0.5
   pull_to_refresh: ^1.6.1
   cached_network_image: ^2.3.3
+  flutter_bloc: ^6.0.0
+  flutter_swiper: ^1.1.6
   flutter:
     sdk: flutter
   json_annotation: ^1.2.0

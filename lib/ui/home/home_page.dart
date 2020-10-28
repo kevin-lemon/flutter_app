@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/bean/home_article_bean.dart';
 import 'package:flutterapp/ui/home/home_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -13,22 +12,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   HomeModel homeModel;
-  List<DatasBean> _datas;
   int pageNum = 0;
 
   @override
   void initState() {
-    print("wxk: init");
     homeModel = HomeModel(() {
       setState(() {
-        if(homeModel.dataBean.datas == null || homeModel.dataBean.datas.length == 0){
+        if (homeModel.homeArticleDatas == null ||
+            homeModel.homeArticleDatas.length == 0) {
           _refreshController.loadNoData();
           return;
-        }
-        if(pageNum == 0){
-          _datas = homeModel?.dataBean?.datas;
-        }else{
-          _datas.addAll(homeModel?.dataBean?.datas);
         }
       });
     });
@@ -56,7 +49,7 @@ class _HomePageState extends State<HomePage> {
   void _onLoading() async {
     // monitor network fetch
     await Future.delayed(Duration(milliseconds: 1000));
-    pageNum ++ ;
+    pageNum++;
     homeModel.getHomeArticleList(pageNum);
     _refreshController.loadComplete();
   }
@@ -88,15 +81,18 @@ class _HomePageState extends State<HomePage> {
       onRefresh: _onRefresh,
       onLoading: _onLoading,
       child: ListView.builder(
-        itemCount: _datas?.length ?? 0,
+        itemCount: homeModel.homeArticleDatas?.length ?? 0,
         itemBuilder: (context, index) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                  child: Text(_datas[index].chapterName)
+                  child: Text(homeModel.homeArticleDatas[index].chapterName),
+                  margin: EdgeInsets.fromLTRB(10, 10, 10, 10)
               ),
-              Container(child: Text(_datas[index].niceShareDate)),
-              Container(child:  Text(_datas[index].niceDate))
+              Container(
+                  child: Text(homeModel.homeArticleDatas[index].niceShareDate)),
+              Container(child: Text(homeModel.homeArticleDatas[index].niceDate))
             ],
           );
         },
