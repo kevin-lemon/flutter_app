@@ -1,6 +1,9 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:flutterapp/main_page.dart';
-import 'file:///D:/FlutterWorkspace/flutter_app/lib/resources/values/app_colors.dart';
+import 'package:flutterapp/resources/values/app_colors.dart';
+
+import 'main_page.dart';
 
 void main() => runApp(MyApp());
 

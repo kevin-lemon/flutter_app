@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/ui/home/home_model.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomePage extends StatefulWidget {
@@ -83,17 +86,33 @@ class _HomePageState extends State<HomePage> {
       child: ListView.builder(
         itemCount: homeModel.homeArticleDatas?.length ?? 0,
         itemBuilder: (context, index) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                  child: Text(homeModel.homeArticleDatas[index].chapterName),
-                  margin: EdgeInsets.fromLTRB(10, 10, 10, 10)
+          return GestureDetector(
+            onTap: (){
+              Fluttertoast.showToast(msg: "点击到item$index",toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,backgroundColor: Colors.black);
+            },
+            child: Card(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      child: Text(homeModel.homeArticleDatas[index].chapterName),
+                      margin: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                          child:
+                          Text(homeModel.homeArticleDatas[index].niceShareDate),
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 10)),
+                      Container(
+                          child: Text(homeModel.homeArticleDatas[index].niceDate),
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 10))
+                    ],
+                  )
+                ],
               ),
-              Container(
-                  child: Text(homeModel.homeArticleDatas[index].niceShareDate)),
-              Container(child: Text(homeModel.homeArticleDatas[index].niceDate))
-            ],
+            ),
           );
         },
         itemExtent: 100.0,

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/resources/values/app_colors.dart';
+import 'package:flutterapp/ui/discover/discover_page.dart';
 import 'package:flutterapp/ui/home/home_model.dart';
-import 'file:///D:/FlutterWorkspace/flutter_app/lib/UI/discover/discover_page.dart';
-import 'file:///D:/FlutterWorkspace/flutter_app/lib/UI/home/home_page.dart';
-import 'file:///D:/FlutterWorkspace/flutter_app/lib/ui/main_drawer/main_drawer.dart';
-import 'file:///D:/FlutterWorkspace/flutter_app/lib/UI/project/project_page.dart';
-import 'file:///D:/FlutterWorkspace/flutter_app/lib/UI/system/system_page.dart';
-import 'file:///D:/FlutterWorkspace/flutter_app/lib/resources/values/app_colors.dart';
+import 'package:flutterapp/ui/home/home_page.dart';
+import 'package:flutterapp/ui/main_drawer/main_drawer.dart';
+import 'package:flutterapp/ui/project/project_page.dart';
+import 'package:flutterapp/ui/system/system_page.dart';
+
 
 import 'UI/navigation/navigation_page.dart';
 
